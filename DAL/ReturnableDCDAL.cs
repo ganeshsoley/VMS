@@ -237,7 +237,7 @@ namespace DAL
                 }
                 catch (Exception ex)
                 {
-                    throw ;
+                    throw ex;
                 }
             }
             return (result > 0);

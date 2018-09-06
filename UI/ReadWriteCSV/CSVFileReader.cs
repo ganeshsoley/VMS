@@ -10,17 +10,17 @@ namespace UI.ReadWriteCSV
     public class CSVFileReader: StreamReader
     {
         #region Constructor(s)
-        public CSVFileReader(Stream objStream)
-        {
-        }
+        //public CSVFileReader(Stream objStream)
+        //{
+        //}
 
         public CSVFileReader(string fileName) : base(fileName)
         {
         }
         #endregion
 
-        public bool ReadRow(CSVRow row)
-        {
-        }
+        //public bool ReadRow(CSVRow row)
+        //{
+        //}
     }
 }

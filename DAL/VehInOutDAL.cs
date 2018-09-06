@@ -392,13 +392,13 @@ namespace DAL
                         objVehInOut.EntryNo = objVehInOut.Dbid;
 
                         objCmd.Parameters.AddWithValue("@STDATE", DateTime.Now);
-                        objCmd.Parameters.AddWithValue("@CRBY", CurrentCompany.m_UserName);
+                        objCmd.Parameters.AddWithValue("@CRBY", "MAINGATE"); //CurrentCompany.m_UserName
                     }
                     objCmd.Parameters.AddWithValue("@DBID", objVehInOut.Dbid);
                     objCmd.Parameters.AddWithValue("@ENTRYNO", objVehInOut.EntryNo);
                     objCmd.Parameters.AddWithValue("@ENTRYDATE", objVehInOut.EntryDate);
                     objCmd.Parameters.AddWithValue("@MODIFYDATE", DateTime.Now);
-                    objCmd.Parameters.AddWithValue("@MODBY", CurrentCompany.m_UserName);
+                    objCmd.Parameters.AddWithValue("@MODBY", "MAINGATE");  //CurrentCompany.m_UserName
                     objCmd.Parameters.AddWithValue("@MACHINENAME", General.GetMachineName());
                     objCmd.Parameters.AddWithValue("@INREADING", objVehInOut.InReading);
                     objCmd.Parameters.AddWithValue("@OUTREADING", objVehInOut.OutReading);

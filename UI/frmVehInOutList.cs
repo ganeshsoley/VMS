@@ -447,8 +447,8 @@ namespace UI
                     }
                     else
                     {
-                        if (objUIRights.ModifyRight)
-                        {
+                        //if (objUIRights.ModifyRight)
+                        //{
                             VehInOut objVehInOut;
                             frmVehInOutProp objFrmProp;
 
@@ -457,11 +457,11 @@ namespace UI
                             objFrmProp.MdiParent = this.MdiParent;
                             objFrmProp.Entry_DataChanged += new frmVehInOutProp.VehInOutUpdateHandler(Entry_DataChanged);
                             objFrmProp.Show();
-                        }
-                        else
-                        {
-                            throw new Exception("Not Authorised.");
-                        }
+                        //}
+                        //else
+                        //{
+                        //    throw new Exception("Not Authorised.");
+                        //}
                     }
                 }
             }
@@ -472,12 +472,12 @@ namespace UI
         }
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-             try
-            {
-                if (!IsList)
-                {
-                    if (objUIRights.AddRight)
-                    {
+            // try
+            //{
+            //    if (!IsList)
+            //    {
+            //        if (objUIRights.AddRight)
+            //        {
                         VehInOut objVehInOut;
                         frmVehInOutProp objFrmProp;
 
@@ -488,17 +488,17 @@ namespace UI
                         objFrmProp.MdiParent = this.MdiParent;
                         objFrmProp.Entry_DataChanged += new frmVehInOutProp.VehInOutUpdateHandler(Entry_DataChanged);
                         objFrmProp.Show();
-                    }
-                    else
-                    {
-                        throw new Exception("Not Authorised.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+            //        }
+            //        else
+            //        {
+            //            throw new Exception("Not Authorised.");
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //}
         }
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {

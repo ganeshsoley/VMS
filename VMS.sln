@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{9A6F28EE-D67E-4889-90A4-8E65CF70A25C}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "VMS", "VMS\VMS.isproj", "{CBF639FB-A5A7-43C8-ADC2-FCBC345C0466}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DTPLVisitorSystem", "DTPLVisitorSystem\DTPLVisitorSystem.vdproj", "{0F9F7516-4F0B-418F-B5F5-48B4E6CF740F}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "VMSSetUp", "VMSSetUp\VMSSetUp.vdproj", "{9061F807-AD3F-4A51-9B83-17B2933F28F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,11 @@ Global
 		{0F9F7516-4F0B-418F-B5F5-48B4E6CF740F}.DVD-5|Any CPU.ActiveCfg = Debug
 		{0F9F7516-4F0B-418F-B5F5-48B4E6CF740F}.Release|Any CPU.ActiveCfg = Release
 		{0F9F7516-4F0B-418F-B5F5-48B4E6CF740F}.SingleImage|Any CPU.ActiveCfg = Release
+		{9061F807-AD3F-4A51-9B83-17B2933F28F2}.CD_ROM|Any CPU.ActiveCfg = Release
+		{9061F807-AD3F-4A51-9B83-17B2933F28F2}.Debug|Any CPU.ActiveCfg = Debug
+		{9061F807-AD3F-4A51-9B83-17B2933F28F2}.DVD-5|Any CPU.ActiveCfg = Debug
+		{9061F807-AD3F-4A51-9B83-17B2933F28F2}.Release|Any CPU.ActiveCfg = Release
+		{9061F807-AD3F-4A51-9B83-17B2933F28F2}.SingleImage|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

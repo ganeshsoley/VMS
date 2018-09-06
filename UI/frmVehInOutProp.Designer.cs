@@ -464,6 +464,7 @@
             this.txtRCBook.Name = "txtRCBook";
             this.txtRCBook.Size = new System.Drawing.Size(178, 20);
             this.txtRCBook.TabIndex = 22;
+            this.txtRCBook.Visible = false;
             this.txtRCBook.TextChanged += new System.EventHandler(this.txtRCBook_TextChanged);
             this.txtRCBook.Enter += new System.EventHandler(this.txtRCBook_Enter);
             this.txtRCBook.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRCBook_KeyPress);
@@ -508,6 +509,7 @@
             this.chkFitness.TabIndex = 24;
             this.chkFitness.Text = "Fitness";
             this.chkFitness.UseVisualStyleBackColor = true;
+            this.chkFitness.Visible = false;
             this.chkFitness.CheckedChanged += new System.EventHandler(this.chkFitness_CheckedChanged);
             // 
             // chkFinance
@@ -519,6 +521,7 @@
             this.chkFinance.TabIndex = 23;
             this.chkFinance.Text = "Finance";
             this.chkFinance.UseVisualStyleBackColor = true;
+            this.chkFinance.Visible = false;
             this.chkFinance.CheckedChanged += new System.EventHandler(this.chkFinance_CheckedChanged);
             // 
             // chkRCBook
@@ -530,6 +533,7 @@
             this.chkRCBook.TabIndex = 21;
             this.chkRCBook.Text = "RC Book";
             this.chkRCBook.UseVisualStyleBackColor = true;
+            this.chkRCBook.Visible = false;
             this.chkRCBook.CheckedChanged += new System.EventHandler(this.chkRCBook_CheckedChanged);
             // 
             // chkPUC

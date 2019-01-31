@@ -33,9 +33,9 @@ namespace BLL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="objPOType"></param>
+        /// <param name="objVehicle"></param>
         /// <returns></returns>
-        public static bool Save(Vehicle objVehicle)
+        public static bool Save(Vehicle objVehicle, User objUser)
         {
             bool flgSave;
             try
@@ -44,7 +44,7 @@ namespace BLL
                 {
                     if (objVehicle.IsEdited || objVehicle.IsNew)
                     {
-                        VehicleDAL.Save(objVehicle);
+                        VehicleDAL.Save(objVehicle, objUser);
                     }
                     flgSave = true;
                     objTScope.Complete();
@@ -60,7 +60,7 @@ namespace BLL
         /// <summary>
         /// Deletes Record from Database.
         /// </summary>
-        /// <param name="objDept">Object containing all data values.</param>
+        /// <param name="objVehicle">Object containing all data values.</param>
         /// <returns>boolean value True if Record is deleted successfully 
         /// otherwise returns False.</returns>
         public static bool Delete(Vehicle objVehicle)
@@ -73,7 +73,7 @@ namespace BLL
         /// <summary>
         /// Checks whether current Record already exists or not.
         /// </summary>
-        /// <param name="objDept">Object containing all Data Values.</param>
+        /// <param name="objVehicle">Object containing all Data Values.</param>
         /// <returns>boolean value True if Record already Exists into Database
         /// otherwise returns False.</returns>
         public static bool IsVehicleExist(Vehicle objVehicle)

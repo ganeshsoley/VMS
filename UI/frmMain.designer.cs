@@ -41,11 +41,11 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.userProfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vehicleInOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.appointmentMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visitorGatePassToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.returnableDCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehicleInOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vehicleInOutCompanyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userRightsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -183,47 +183,46 @@
             this.vehicleInOutToolStripMenuItem,
             this.vehicleInOutCompanyToolStripMenuItem});
             this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
-            this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
+            this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(85, 20);
             this.transactionsToolStripMenuItem.Text = "Transactions";
-            
             // 
             // appointmentMasterToolStripMenuItem
             // 
             this.appointmentMasterToolStripMenuItem.Name = "appointmentMasterToolStripMenuItem";
-            this.appointmentMasterToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.appointmentMasterToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.appointmentMasterToolStripMenuItem.Text = "Appointment Booking";
             this.appointmentMasterToolStripMenuItem.Click += new System.EventHandler(this.appointmentMasterToolStripMenuItem_Click);
             // 
             // visitorGatePassToolStripMenuItem
             // 
             this.visitorGatePassToolStripMenuItem.Name = "visitorGatePassToolStripMenuItem";
-            this.visitorGatePassToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.visitorGatePassToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.visitorGatePassToolStripMenuItem.Text = "Visitor Gate-Pass";
             this.visitorGatePassToolStripMenuItem.Click += new System.EventHandler(this.visitorGatePassToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(200, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(199, 6);
             // 
             // returnableDCToolStripMenuItem
             // 
             this.returnableDCToolStripMenuItem.Name = "returnableDCToolStripMenuItem";
-            this.returnableDCToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.returnableDCToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.returnableDCToolStripMenuItem.Text = "Returnable DC";
             this.returnableDCToolStripMenuItem.Click += new System.EventHandler(this.returnableDCToolStripMenuItem_Click);
             // 
             // vehicleInOutToolStripMenuItem
             // 
             this.vehicleInOutToolStripMenuItem.Name = "vehicleInOutToolStripMenuItem";
-            this.vehicleInOutToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.vehicleInOutToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.vehicleInOutToolStripMenuItem.Text = "Vehicle In Out Other";
             this.vehicleInOutToolStripMenuItem.Click += new System.EventHandler(this.vehicleInOutToolStripMenuItem_Click);
             // 
             // vehicleInOutCompanyToolStripMenuItem
             // 
             this.vehicleInOutCompanyToolStripMenuItem.Name = "vehicleInOutCompanyToolStripMenuItem";
-            this.vehicleInOutCompanyToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.vehicleInOutCompanyToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
             this.vehicleInOutCompanyToolStripMenuItem.Text = "Vehicle In Out Company";
             this.vehicleInOutCompanyToolStripMenuItem.Click += new System.EventHandler(this.vehicleInOutCompanyToolStripMenuItem_Click);
             // 

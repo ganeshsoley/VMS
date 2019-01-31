@@ -291,12 +291,14 @@ namespace UI
             string td = CurrentCompany.m_ToDate.ToShortDateString();
 
             toolStripStatusLabel1.Text = "VMS - Financial Year " + fd + " - " + td;
+            toolStripStatusLabel1.Width = 141;
             //   toolStripStatusLabel2.Text = "USER : " + frm.txtUserName.Text + "" ;
-            //toolStripStatusLabel2.Text = "USER : " + CurrentCompany.m_UserName;
+            toolStripStatusLabel2.Text = "USER : " + CurrentCompany.m_UserName;
             //mUserID = CurrentCompany.m_Dbid;
             //toolStripStatusLabel5.Text = CurrentCompany.m_DataSource;
             toolStripStatusLabel3.Text = "DATE : " + date;
             toolStripStatusLabel4.Text = "TIME : " + time;
+            toolStripStatusLabel4.Text = "USER : " + CurrentUser.LoginName;
             toolStripStatusLabel2.Visible = false;
             toolStripStatusLabel5.Visible = false;
             DisableMenus();
@@ -498,7 +500,7 @@ namespace UI
         {
             try
             {
-                frmVehInOutList objFrmList = new frmVehInOutList();
+                frmVehInOutList objFrmList = new frmVehInOutList(CurrentCompany, CurrentUser);
                 objFrmList.EntryType = "IN/OUT OTHER";
                 objFrmList.MdiParent = this;
                 objFrmList.Show();
@@ -512,7 +514,7 @@ namespace UI
         {
             try
             {
-                frmUserAuthority objfrmlist = new frmUserAuthority();
+                frmUserAuthority objfrmlist = new frmUserAuthority(CurrentCompany, CurrentUser);
                 objfrmlist.MdiParent = this;
                 objfrmlist.Show();
             }
@@ -526,7 +528,7 @@ namespace UI
         {
             try
             {
-                frmVehInOutList objFrmList = new frmVehInOutList();
+                frmVehInOutList objFrmList = new frmVehInOutList(CurrentCompany, CurrentUser);
                 objFrmList.EntryType = "COMPANY";
                 objFrmList.MdiParent = this;
                 objFrmList.Show();

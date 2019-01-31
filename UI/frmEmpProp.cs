@@ -14,6 +14,7 @@ namespace UI
         private bool flgLoading;
 
         private Employee objEmp;
+        private User objUser;
         #endregion
 
         #region Constructor
@@ -22,9 +23,10 @@ namespace UI
             InitializeComponent();
         }
 
-        public frmEmpProp(Employee objEmp)
+        public frmEmpProp(Employee objEmp, User curUser)
         {
             this.objEmp = objEmp;
+            objUser = curUser;
             InitializeComponent();
         }
         #endregion
@@ -392,7 +394,7 @@ namespace UI
             try
             {
                 bool flgApplyEdit;
-                flgApplyEdit = EmployeeManager.Save(objEmp);
+                flgApplyEdit = EmployeeManager.Save(objEmp, objUser);
                 if (flgApplyEdit)
                 {
                     // instance the event args and pass it value

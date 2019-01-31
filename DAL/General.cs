@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 using System.Data.SqlClient;
 using EntityObject;
@@ -21,20 +18,19 @@ namespace DAL
 
         static public string GetSQLConnectionString()
         {
-            // return "Data Source=Administrator\\Database Engine;User ID=ITPROJECT\\Administrator;Password = dtpl@admin1;Initial Catalog=DTPL;Min Pool Size=5;Max Pool Size=100;Trusted_Connection=True";   //;Connect Timeout=30
-            //return "Data Source=IT5.DTPLF.COM\\SQLEXPRESS;Initial Catalog=DTPL;User ID=DTPL;Password =Dtpl@1234;Min Pool Size=5;Max Pool Size=100;Integrated Security = True;";   //;Connect Timeout=30
-            //return "Data Source=ITPROJECT\\SQLEXPRESS,1433;Initial Catalog=DTPL;User ID=VMSUser;Password=Dtpl@vms16; Min Pool Size = 5; Max Pool Size = 100";
+            //return "Data Source =.; Initial Catalog = DTPL; Integrated Security = True";
 
-            string strDataSource = "Data Source=" + GetSqlServerPCName() + "\\" + GetSqlServerInstanceName() + "," + GetSQLPort() + ";";
-            string strDBName = "Initial Catalog =" + GetDatabaseName() + ";";
+            string strDataSource = "Data Source=" + GetSqlServerPCName() + "," + GetSQLPort() + ";"; // + "\\" + GetSqlServerInstanceName() + "," + GetSQLPort() + ";";
+            string strDBName = "Initial Catalog = " + GetDatabaseName() + ";";
             string strUser = "User ID=" + GetDBUserName() + ";";
             string strPwd = "Password=" + GetDBPwd() + ";";
+
             return strDataSource + strDBName + strUser + strPwd + "Min Pool Size = 5; Max Pool Size = 100";
         }
 
         public static string GetSqlServerPCName()
         {
-            //return "ITPROJECT";
+            //return "IT6";
             return "GATE-PC";
         }
 
@@ -79,11 +75,6 @@ namespace DAL
             conn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
-            //cmd.CommandText = "SELECT A.*, B.FromDate FROMDATE, B.ToDate TODATE, " +
-            //    " B.DBID MainDBID, B.TRANSACTIONLOCK TRANSACTIONLOCK, SysDate " +
-            //    " FROM SYSTEM.SysCompany A, dtplsh1415.CompFinYr B " +
-            //    " WHERE A.CompanyID = B.compdbid " +
-            //    " AND B.DBID = " + mMastID;
 
             cmd.CommandText = "SELECT A.*, B.FromDate FROMDATE, B.ToDate TODATE, " +
                 " B.DBID MainDBID, B.TRANSACTIONLOCK TRANSACTIONLOCK, GETDATE() as SysDate " +

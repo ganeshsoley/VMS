@@ -151,7 +151,7 @@ namespace DAL
         /// <param name="objDCItem">Object containing Data values to be saved.</param>
         /// <returns>Boolean value True if Record is saved successfully
         /// otherwise returns False indicating Record is not saved.</returns>
-        public static bool Save(ReturnableDCItem objDCItem)
+        public static bool Save(ReturnableDCItem objDCItem, User currentUser)
         {
             int result = 0;
             UserCompany CurrentCompany = new UserCompany();
@@ -199,12 +199,12 @@ namespace DAL
                     if (objDCItem.IsNew)
                     {
                         objCmd.Parameters.AddWithValue("@StDate", DateTime.Now);
-                        objCmd.Parameters.AddWithValue("@CrBy", CurrentCompany.m_UserName);
+                        objCmd.Parameters.AddWithValue("@CrBy", currentUser.LoginName);
                         //objDCItem.DBID = General.GenerateDBID(Conn, "RETURNABLEDCDETAIL");
                         objDCItem.DBID = General.GenerateDBID("SEQDCITEMID", Conn);
                     }
                     objCmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
-                    objCmd.Parameters.AddWithValue("@ModBy", CurrentCompany.m_UserName);
+                    objCmd.Parameters.AddWithValue("@ModBy", currentUser.LoginName);
                     objCmd.Parameters.AddWithValue("@MachineName", General.GetMachineName());
                     objCmd.Parameters.AddWithValue("@dbID", objDCItem.DBID);
                     objCmd.Parameters.AddWithValue("@MasterDBID", objDCItem.MasterDBID);

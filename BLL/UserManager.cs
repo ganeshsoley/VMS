@@ -59,10 +59,10 @@ namespace BLL
         /// </summary>
         /// <param name="objUser"></param>
         /// <returns></returns>
-        public static bool Save(User objUser)
+        public static bool Save(User objUser, User currentUser)
         {
             bool recSave;
-            recSave = UserDAL.Save(objUser);
+            recSave = UserDAL.Save(objUser, currentUser);
             return recSave;
         }
 

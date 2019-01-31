@@ -36,7 +36,7 @@ namespace BLL
         /// </summary>
         /// <param name="objPOType"></param>
         /// <returns></returns>
-        public static bool Save(Appointment objAppoint)
+        public static bool Save(Appointment objAppoint, User objCurUser)
         {
             bool flgSave;
             try
@@ -45,7 +45,7 @@ namespace BLL
                 {
                     if (objAppoint.IsEdited || objAppoint.IsNew)
                     {
-                        AppointmentDAL.Save(objAppoint);
+                        AppointmentDAL.Save(objAppoint, objCurUser);
                     }
                     flgSave = true;
                     objTScope.Complete();

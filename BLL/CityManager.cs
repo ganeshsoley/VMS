@@ -34,7 +34,7 @@ namespace BLL
         /// </summary>
         /// <param name="objPOType"></param>
         /// <returns></returns>
-        public static bool Save(City objCity)
+        public static bool Save(City objCity, User objUser)
         {
             bool flgSave;
             try
@@ -43,7 +43,7 @@ namespace BLL
                 {
                     if (objCity.IsEdited || objCity.IsNew)
                     {
-                        CityDAL.Save(objCity);
+                        CityDAL.Save(objCity, objUser);
                     }
                     flgSave = true;
                     objTScope.Complete();

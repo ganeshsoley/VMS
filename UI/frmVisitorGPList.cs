@@ -416,7 +416,7 @@ namespace UI
                             frmVisitorGPProp objFrmProp;
 
                             objVisitorGP = VisitorGatePassManager.GetItem(Convert.ToInt32(lvwGPs.SelectedItems[0].Name));
-                            objFrmProp = new frmVisitorGPProp(objVisitorGP);
+                            objFrmProp = new frmVisitorGPProp(objVisitorGP, currentUser);
                             objFrmProp.MdiParent = this.MdiParent;
                             objFrmProp.Entry_DataChanged += new frmVisitorGPProp.VisitorGPUpdateHandler(Entry_DataChanged);
                             objFrmProp.Show();
@@ -446,7 +446,7 @@ namespace UI
                         frmVisitorGPProp objFrmProp;
 
                         objVisitorGP = new VisitorGatePass();
-                        objFrmProp = new frmVisitorGPProp(objVisitorGP);
+                        objFrmProp = new frmVisitorGPProp(objVisitorGP, currentUser);
                         objFrmProp.IsNew = true;
                         objFrmProp.MdiParent = this.MdiParent;
                         objFrmProp.Entry_DataChanged += new frmVisitorGPProp.VisitorGPUpdateHandler(Entry_DataChanged);
@@ -531,7 +531,7 @@ namespace UI
                     objConInfo.IntegratedSecurity = false;
 
                     objCrTables = objRptDoc.Database.Tables;
-                    foreach (CrystalDecisions.CrystalReports.Engine.Table objCrTable in objCrTables)
+                    foreach (Table objCrTable in objCrTables)
                     {
                         objTableLogOnInfo = objCrTable.LogOnInfo;
                         objTableLogOnInfo.ConnectionInfo = objConInfo;
@@ -567,7 +567,7 @@ namespace UI
                     objVisitorGP.TimeOut = DateTime.Now;
 
                     bool flgApplyEdit;
-                    flgApplyEdit = VisitorGatePassManager.Save(objVisitorGP);
+                    flgApplyEdit = VisitorGatePassManager.Save(objVisitorGP, currentUser);
                     if (flgApplyEdit)
                     {
                         // instance the event args and pass it value

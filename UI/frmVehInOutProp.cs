@@ -20,6 +20,7 @@ namespace UI
         private string mEntryType;
 
         private VehInOut objVehInOut;
+        private User objUser;
         #endregion
 
         #region Constructor
@@ -27,9 +28,10 @@ namespace UI
         {
             InitializeComponent();
         }
-        public frmVehInOutProp(VehInOut objVehInOut)
+        public frmVehInOutProp(VehInOut objVehInOut, User currentUser)
         {
             this.objVehInOut = objVehInOut;
+            objUser = currentUser;
             InitializeComponent();
         }
         #endregion
@@ -967,7 +969,7 @@ namespace UI
             try
             {
                 bool flgApplyEdit;
-                flgApplyEdit = VehInOutManager.Save(objVehInOut);
+                flgApplyEdit = VehInOutManager.Save(objVehInOut, objUser);
                 if (flgApplyEdit)
                 {
                     // instance the event args and pass it value

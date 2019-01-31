@@ -151,7 +151,7 @@ namespace DAL
         /// <param name="objVisitor">Object containing Data values to be saved.</param>
         /// <returns>Boolean value True if Record is saved successfully
         /// otherwise returns False indicating Record is not saved.</returns>
-        public static bool Save(Visitor objVisitor)
+        public static bool Save(Visitor objVisitor, User objUser)
         {
             int result = 0;
             UserCompany CurrentCompany = new UserCompany();
@@ -192,13 +192,13 @@ namespace DAL
                     if (objVisitor.IsNew)
                     {
                         objCmd.Parameters.AddWithValue("@StDate", DateTime.Now);
-                        objCmd.Parameters.AddWithValue("@CrBy", CurrentCompany.m_UserName);
+                        objCmd.Parameters.AddWithValue("@CrBy", objUser.LoginName);
                         //objVisitor.DBID = General.GenerateDBID(Conn, "VISITORMASTER");
                         objVisitor.DBID = General.GenerateDBID("SEQVISITORID", Conn);
                         objVisitor.RegNo = objVisitor.DBID;
                     }
                     objCmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
-                    objCmd.Parameters.AddWithValue("@ModBy", CurrentCompany.m_UserName);
+                    objCmd.Parameters.AddWithValue("@ModBy", objUser.LoginName);
                     objCmd.Parameters.AddWithValue("@MachineName", General.GetMachineName());
                     objCmd.Parameters.AddWithValue("@dbID", objVisitor.DBID);
                     objCmd.Parameters.AddWithValue("@VisitorRegNo", objVisitor.RegNo);

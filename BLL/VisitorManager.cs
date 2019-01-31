@@ -37,7 +37,7 @@ namespace BLL
         /// </summary>
         /// <param name="objVisitor">Visitor Object containing property values.</param>
         /// <returns>Visitor Object to be Saved.</returns>
-        public static bool Save(Visitor objVisitor)
+        public static bool Save(Visitor objVisitor, User objUser)
         {
             bool flgSave;
             try
@@ -46,7 +46,7 @@ namespace BLL
                 {
                     if (objVisitor.IsEdited || objVisitor.IsNew)
                     {
-                        VisitorDAL.Save(objVisitor);
+                        VisitorDAL.Save(objVisitor, objUser);
                     }
                     flgSave = true;
                     objTScope.Complete();

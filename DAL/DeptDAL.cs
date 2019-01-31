@@ -128,7 +128,7 @@ namespace DAL
         /// <param name="objDept">Object containing Data values to be saved.</param>
         /// <returns>Boolean value True if Record is saved successfully
         /// otherwise returns False indicating Record is not saved.</returns>
-        public static bool Save(Department objDept)
+        public static bool Save(Department objDept, User objCurUser)
         {
             int result = 0;
             UserCompany CurrentCompany = new UserCompany();
@@ -163,11 +163,11 @@ namespace DAL
                     if (objDept.IsNew)
                     {
                         objCmd.Parameters.AddWithValue("@StDate", DateTime.Now);
-                        objCmd.Parameters.AddWithValue("@CrBy", CurrentCompany.m_UserName);
+                        objCmd.Parameters.AddWithValue("@CrBy", objCurUser.LoginName);
                         objDept.DBID = General.GenerateDBID(Conn, "DEPTMAST");
                     }
                     objCmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
-                    objCmd.Parameters.AddWithValue("@ModBy", CurrentCompany.m_UserName);
+                    objCmd.Parameters.AddWithValue("@ModBy", objCurUser.LoginName);
                     objCmd.Parameters.AddWithValue("@MachineName", General.GetMachineName());
                     objCmd.Parameters.AddWithValue("@dbID", objDept.DBID);
 

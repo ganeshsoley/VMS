@@ -76,7 +76,7 @@ namespace DAL
             return ObjUser;
         }
 
-        public static bool Save(User objUser)
+        public static bool Save(User objUser, User currentUser)
         {
             int result = 0;
             UserCompany CurrentCompany = new UserCompany();
@@ -123,11 +123,11 @@ namespace DAL
                 if (objUser.IsNew)
                 {
                     objCmd.Parameters.AddWithValue("@StDate", DateTime.Now);
-                    objCmd.Parameters.AddWithValue("@CrBy", CurrentCompany.m_UserName);
+                    objCmd.Parameters.AddWithValue("@CrBy", currentUser.LoginName);
                     objUser.DBID = GenerateDBID();
                 }
                 objCmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
-                objCmd.Parameters.AddWithValue("@ModBy", CurrentCompany.m_UserName);
+                objCmd.Parameters.AddWithValue("@ModBy", currentUser.LoginName);
                 objCmd.Parameters.AddWithValue("@MachineName", General.GetMachineName());
 
                 objCmd.Parameters.AddWithValue("@Dept", objUser.Dept);

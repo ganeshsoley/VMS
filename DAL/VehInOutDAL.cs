@@ -204,7 +204,7 @@ namespace DAL
        /// <param name="objDept">Object containing Data values to be saved.</param>
        /// <returns>Boolean value True if Record is saved successfully
        /// otherwise returns False indicating Record is not saved.</returns>
-       public static bool Save(VehInOut objVehInOut)
+       public static bool Save(VehInOut objVehInOut, User objUser)
        {
            int result = 0;
            string strSaveQry;
@@ -392,13 +392,13 @@ namespace DAL
                         objVehInOut.EntryNo = objVehInOut.Dbid;
 
                         objCmd.Parameters.AddWithValue("@STDATE", DateTime.Now);
-                        objCmd.Parameters.AddWithValue("@CRBY", "MAINGATE"); //CurrentCompany.m_UserName
+                        objCmd.Parameters.AddWithValue("@CRBY", objUser.LoginName); //CurrentCompany.m_UserName
                     }
                     objCmd.Parameters.AddWithValue("@DBID", objVehInOut.Dbid);
                     objCmd.Parameters.AddWithValue("@ENTRYNO", objVehInOut.EntryNo);
                     objCmd.Parameters.AddWithValue("@ENTRYDATE", objVehInOut.EntryDate);
                     objCmd.Parameters.AddWithValue("@MODIFYDATE", DateTime.Now);
-                    objCmd.Parameters.AddWithValue("@MODBY", "MAINGATE");  //CurrentCompany.m_UserName
+                    objCmd.Parameters.AddWithValue("@MODBY", objUser.LoginName);  //CurrentCompany.m_UserName
                     objCmd.Parameters.AddWithValue("@MACHINENAME", General.GetMachineName());
                     objCmd.Parameters.AddWithValue("@INREADING", objVehInOut.InReading);
                     objCmd.Parameters.AddWithValue("@OUTREADING", objVehInOut.OutReading);

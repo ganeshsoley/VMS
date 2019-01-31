@@ -55,14 +55,14 @@ namespace BLL
         /// <param name="objRetDC">Current Department Object.</param>
         /// <returns>Boolean value True if record is saved successfully
         /// otherwise returns 'False' indicating record is not saved.</returns>
-        public static bool Save(ReturnableDC objRetDC)
+        public static bool Save(ReturnableDC objRetDC, User currentUser)
         {
             bool flgSave;
                 using (TransactionScope objTScope = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     if (objRetDC.IsEdited || objRetDC.IsNew)
                     {
-                        ReturnableDCDAL.Save(objRetDC);
+                        ReturnableDCDAL.Save(objRetDC, currentUser);
                     }
 
                     if (objRetDC.DCItems != null)
@@ -82,7 +82,7 @@ namespace BLL
                                 objItem.DCNo = objRetDC.DCNo;
                                 objItem.DCDate = objRetDC.DCDate;
 
-                                ReturnableDCItemDAL.Save(objItem);
+                                ReturnableDCItemDAL.Save(objItem, currentUser);
                             }
                         }
                     }
@@ -132,6 +132,11 @@ namespace BLL
         public static long GetEntryNo()
         {
             return ReturnableDCDAL.GetEntryNo();
+        }
+
+        public static DataTable GetDCReport(string entryType, DateTime FromDate, DateTime ToDate, string partyName)
+        {
+            return ReturnableDCDAL.GetDCReport(entryType, FromDate, ToDate, partyName);
         }
     }
 }

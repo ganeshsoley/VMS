@@ -29,6 +29,7 @@
         public void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.rptRetDCDetail1 = new UI.Reports.rptRetDCDetail();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -41,6 +42,8 @@
             this.crystalReportViewer1.Name = "crystalReportViewer1";
             this.crystalReportViewer1.Size = new System.Drawing.Size(539, 401);
             this.crystalReportViewer1.TabIndex = 0;
+            this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            this.crystalReportViewer1.Load += new System.EventHandler(this.crystalReportViewer1_Load);
             // 
             // frmReportViewer
             // 
@@ -58,5 +61,6 @@
         #endregion
 
         public CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
+        private Reports.rptRetDCDetail rptRetDCDetail1;
     }
 }

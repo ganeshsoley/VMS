@@ -473,7 +473,7 @@ namespace UI
                             frmAppointmentProp objFrmProp;
 
                             objAppoint = AppointmentManager.GetItem(Convert.ToInt32(lvwAppoints.SelectedItems[0].Name));
-                            objFrmProp = new frmAppointmentProp(objAppoint);
+                            objFrmProp = new frmAppointmentProp(objAppoint, objCurUser);
                             objFrmProp.MdiParent = this.MdiParent;
                             objFrmProp.Entry_DataChanged += new frmAppointmentProp.AppointUpdateHandler(Entry_DataChanged);
                             objFrmProp.Show();
@@ -503,7 +503,7 @@ namespace UI
                         frmAppointmentProp objFrmProp;
 
                         objAppoint = new Appointment();
-                        objFrmProp = new frmAppointmentProp(objAppoint);
+                        objFrmProp = new frmAppointmentProp(objAppoint, objCurUser);
                         objFrmProp.IsNew = true;
                         objFrmProp.MdiParent = this.MdiParent;
                         objFrmProp.Entry_DataChanged += new frmAppointmentProp.AppointUpdateHandler(Entry_DataChanged);
@@ -566,7 +566,7 @@ namespace UI
                     objApmt.ApmtClose = true;
 
                     bool flgApplyEdit;
-                    flgApplyEdit = AppointmentManager.Save(objApmt);
+                    flgApplyEdit = AppointmentManager.Save(objApmt, objCurUser);
                     if (flgApplyEdit)
                     {
                         // instance the event args and pass it value

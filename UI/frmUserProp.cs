@@ -19,6 +19,7 @@ namespace UI
         private bool flgLoading;
 
         private User objUser;
+        private User currentUser;
         #endregion
 
         #region Public Properties
@@ -41,9 +42,10 @@ namespace UI
             InitializeComponent();
         }
 
-        public frmUserProp(User objUser)
+        public frmUserProp(User objUser, User currentUser)
         {
             this.objUser = objUser;
+            this.currentUser = currentUser;
             InitializeComponent();
         }
         #endregion
@@ -269,7 +271,7 @@ namespace UI
         {
             bool flgApplyEdit;
 
-            flgApplyEdit = UserManager.Save(objUser);
+            flgApplyEdit = UserManager.Save(objUser, currentUser);
 
             if (flgApplyEdit)
             {

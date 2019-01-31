@@ -38,7 +38,7 @@ namespace BLL
         /// <param name="objVisitorGP">Current VisitorGP Object.</param>
         /// <returns>Boolean value True if record is saved successfully
         /// otherwise returns 'False' indicating record is not saved.</returns>
-        public static bool Save(VisitorGatePass objVisitorGP)
+        public static bool Save(VisitorGatePass objVisitorGP, User objCurUser)
         {
             bool flgSave;
             try
@@ -53,7 +53,7 @@ namespace BLL
                         //}
                         //else
                         //{
-                        VisitorGatePassDAL.Save(objVisitorGP);
+                        VisitorGatePassDAL.Save(objVisitorGP, objCurUser);
                         if (objVisitorGP.IsNew)
                         {
                             VisitorGatePassDAL.CloseAppointment(objVisitorGP);

@@ -20,7 +20,7 @@ namespace UI
         private bool flgLoading;
 
         private Driver objDriver;
-
+        private User currentUser;
         #endregion
 
         #region Constructor
@@ -28,9 +28,10 @@ namespace UI
         {
             InitializeComponent();
         }
-        public frmDriverProp(Driver objDriver)
+        public frmDriverProp(Driver objDriver, User objUser)
         {
             this.objDriver = objDriver;
+            currentUser = objUser;
             InitializeComponent();
         }
         #endregion
@@ -213,7 +214,7 @@ namespace UI
             try
             {
                 bool flgApplyEdit;
-                flgApplyEdit = DriverManager.Save(objDriver);
+                flgApplyEdit = DriverManager.Save(objDriver, currentUser);
                 if (flgApplyEdit)
                 {
                     // instance the event args and pass it value

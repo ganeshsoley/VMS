@@ -21,6 +21,7 @@ namespace UI
         private ReturnableDC objDC;
         private ReturnableDCItem objItemSelected;
         private ListViewColumnSorter lvwColSorter;
+        private User currentUser;
         #endregion
 
         /// <summary>
@@ -58,9 +59,10 @@ namespace UI
             InitializeComponent();
         }
 
-        public frmReturnableDCProp(ReturnableDC objDC)
+        public frmReturnableDCProp(ReturnableDC objDC, User currentUser)
         {
             this.objDC = objDC;
+            this.currentUser = currentUser;
             InitializeComponent();
             InitializeListView();
         }
@@ -278,6 +280,7 @@ namespace UI
             else
             {
                 this.Text += " [ " + objDC.EntryNo + " ]";
+                lblEntryNo.Text = objDC.EntryNo.ToString();
                 txtEntryDate.Enabled = false;
                 cboDCType.Enabled = false;
                 cboParty.Enabled = false;
@@ -395,6 +398,7 @@ namespace UI
         private void txtEntryDate_Leave(object sender, EventArgs e)
         {
             txtEntryDate.Text = objDC.EntryDate.ToShortDateString();
+            
         }
 
         private void cboDCType_Enter(object sender, EventArgs e)
@@ -923,7 +927,7 @@ namespace UI
             bool flgApplyEdit;
             try
             {
-                flgApplyEdit = ReturnableDCManager.Save(objDC);
+                flgApplyEdit = ReturnableDCManager.Save(objDC, currentUser);
 
                 if (flgApplyEdit == true)
                 {

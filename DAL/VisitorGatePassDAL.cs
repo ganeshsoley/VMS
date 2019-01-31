@@ -173,7 +173,7 @@ namespace DAL
         /// <param name="objDept">Object containing Data values to be saved.</param>
         /// <returns>Boolean value True if Record is saved successfully
         /// otherwise returns False indicating Record is not saved.</returns>
-        public static bool Save(VisitorGatePass objVisitorGP)
+        public static bool Save(VisitorGatePass objVisitorGP, User objCurUser)
         {
             int result = 0;
             //string tmpStr = "";
@@ -242,14 +242,14 @@ namespace DAL
                     if (objVisitorGP.IsNew)
                     {
                         objCmd.Parameters.AddWithValue("@StDate", DateTime.Now);
-                        objCmd.Parameters.AddWithValue("@CrBy", CurrentCompany.m_UserName);
+                        objCmd.Parameters.AddWithValue("@CrBy", objCurUser.LoginName);
                         objCmd.Parameters.AddWithValue("@VImage", objVisitorGP.VisitorImage);
 
                         objVisitorGP.DBID = General.GenerateDBID(Conn, "VISITORGATEPASS");
                         objVisitorGP.GatePassNo = string.Format("{0:yyMMdd}", dt) + Convert.ToString(objVisitorGP.DBID).PadLeft(4, Convert.ToChar(48));
                     }
                     objCmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
-                    objCmd.Parameters.AddWithValue("@ModBy", CurrentCompany.m_UserName);
+                    objCmd.Parameters.AddWithValue("@ModBy", objCurUser.LoginName);
                     objCmd.Parameters.AddWithValue("@MachineName", General.GetMachineName());
 
                     objCmd.Parameters.AddWithValue("@gatePassNo", objVisitorGP.GatePassNo);

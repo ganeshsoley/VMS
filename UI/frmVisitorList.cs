@@ -445,7 +445,7 @@ namespace UI
                             frmVisitorProp objFrmProp;
 
                             objVisitor = VisitorManager.GetItem(Convert.ToInt32(lvwVisitors.SelectedItems[0].Name));
-                            objFrmProp = new frmVisitorProp(objVisitor);
+                            objFrmProp = new frmVisitorProp(objVisitor, currentUser);
                             objFrmProp.MdiParent = this.MdiParent;
                             objFrmProp.Entry_DataChanged += new frmVisitorProp.VisitorUpdateHandler(Entry_DataChanged);
                             objFrmProp.Show();
@@ -475,7 +475,7 @@ namespace UI
                         frmVisitorProp objFrmProp;
 
                         objVisitor = new Visitor();
-                        objFrmProp = new frmVisitorProp(objVisitor);
+                        objFrmProp = new frmVisitorProp(objVisitor, currentUser);
                         objFrmProp.IsNew = true;
                         objFrmProp.MdiParent = this.MdiParent;
                         objFrmProp.Entry_DataChanged += new frmVisitorProp.VisitorUpdateHandler(Entry_DataChanged);

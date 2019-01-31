@@ -19,6 +19,7 @@ namespace UI
         private bool flgLoading;
 
         private Visitor objVisitor;
+        private User currentUser;
         #endregion
 
         #region Constructor(s)
@@ -27,9 +28,11 @@ namespace UI
             InitializeComponent();
         }
 
-        public frmVisitorProp(Visitor objVisitor)
+        public frmVisitorProp(Visitor objVisitor, User objUser)
         {
             this.objVisitor = objVisitor;
+            this.currentUser = objUser;
+
             InitializeComponent();
         }
         #endregion
@@ -322,11 +325,11 @@ namespace UI
             try
             {
                 bool flgApplyEdit;
-                flgApplyEdit = VisitorManager.Save(objVisitor);
+                flgApplyEdit = VisitorManager.Save(objVisitor, currentUser);
                 if (flgApplyEdit)
                 {
                     // instance the event args and pass it value
-                    VisitorUpdateEventArgs args = new VisitorUpdateEventArgs(objVisitor.DBID, Convert.ToString(objVisitor.RegNo), objVisitor.VName, objVisitor.Company,objVisitor.MobileNo);
+                    VisitorUpdateEventArgs args = new VisitorUpdateEventArgs(objVisitor.DBID, Convert.ToString(objVisitor.RegNo), objVisitor.VName, objVisitor.Company, objVisitor.MobileNo);
 
                     // raise event wtth  updated 
                     if (Entry_DataChanged != null)

@@ -19,6 +19,7 @@ namespace UI
          private bool flgLoading;
 
          private Vehicle objVehicle;
+        private User objUser;
         #endregion
 
         #region Constructor
@@ -26,9 +27,10 @@ namespace UI
         {
             InitializeComponent();
         }
-        public frmVehicleProp(Vehicle objVehicle)
+        public frmVehicleProp(Vehicle objVehicle, User currentUser)
         {
             this.objVehicle = objVehicle;
+            objUser = currentUser;
             InitializeComponent();
         }
         #endregion
@@ -243,7 +245,7 @@ namespace UI
             try
             {
                 bool flgApplyEdit;
-                flgApplyEdit = VehicleManager.Save(objVehicle);
+                flgApplyEdit = VehicleManager.Save(objVehicle, objUser);
                 if (flgApplyEdit)
                 {
                     // instance the event args and pass it value

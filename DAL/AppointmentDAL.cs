@@ -163,7 +163,7 @@ namespace DAL
        /// <param name="objAppoint">Object containing Data values to be saved.</param>
        /// <returns>Boolean value True if Record is saved successfully
        /// otherwise returns False indicating Record is not saved.</returns>
-       public static bool Save(Appointment objAppoint)
+       public static bool Save(Appointment objAppoint, User currentUser)
        {
            int result = 0;
            string mDate;
@@ -212,7 +212,7 @@ namespace DAL
                    if (objAppoint.IsNew)
                    {
                        objCmd.Parameters.AddWithValue("@StDate", DateTime.Now);
-                       objCmd.Parameters.AddWithValue("@CrBy", CurrentCompany.m_UserName);
+                       objCmd.Parameters.AddWithValue("@CrBy", currentUser.LoginName);
                        objAppoint.EntryDate = dt;
 
                         //objAppoint.DBID = General.GenerateDBID(Conn, "APPOINTMENTMASTER");
@@ -230,7 +230,7 @@ namespace DAL
                        
                    }
                    objCmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
-                   objCmd.Parameters.AddWithValue("@ModBy", CurrentCompany.m_UserName);
+                   objCmd.Parameters.AddWithValue("@ModBy", currentUser.LoginName);
                    objCmd.Parameters.AddWithValue("@MachineName", General.GetMachineName());
                    objCmd.Parameters.AddWithValue("@dbID", objAppoint.DBID);
                     objCmd.Parameters.AddWithValue("@EntryDate", objAppoint.EntryDate);

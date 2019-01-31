@@ -317,7 +317,7 @@ namespace UI
                             frmVehicleProp objFrmProp;
 
                             objVehicle = VehicleManager.GetItem(Convert.ToInt32(lvwVehicles.SelectedItems[0].Name));
-                            objFrmProp = new frmVehicleProp(objVehicle);
+                            objFrmProp = new frmVehicleProp(objVehicle, currentUser);
                             objFrmProp.MdiParent = this.MdiParent;
                             objFrmProp.Entry_DataChanged += new frmVehicleProp.VehicleUpdateHandler(Entry_DataChanged);
                             objFrmProp.Show();
@@ -347,7 +347,7 @@ namespace UI
                         frmVehicleProp objFrmProp;
 
                         objVehicle = new Vehicle();
-                        objFrmProp = new frmVehicleProp(objVehicle);
+                        objFrmProp = new frmVehicleProp(objVehicle, currentUser);
                         objFrmProp.IsNew = true;
                         objFrmProp.MdiParent = this.MdiParent;
                         objFrmProp.Entry_DataChanged += new frmVehicleProp.VehicleUpdateHandler(Entry_DataChanged);

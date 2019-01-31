@@ -16,14 +16,14 @@ namespace UI.Reports {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class rptRetDCDetail : ReportClass {
+    public class rptRetDCReport : ReportClass {
         
-        public rptRetDCDetail() {
+        public rptRetDCReport() {
         }
         
         public override string ResourceName {
             get {
-                return "rptRetDCDetail.rpt";
+                return "rptRetDCReport.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace UI.Reports {
         
         public override string FullResourceName {
             get {
-                return "UI.Reports.rptRetDCDetail.rpt";
+                return "UI.Reports.rptRetDCReport.rpt";
             }
             set {
                 // Do nothing
@@ -95,12 +95,28 @@ namespace UI.Reports {
                 return this.DataDefinition.ParameterFields[0];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_ToDate {
+            get {
+                return this.DataDefinition.ParameterFields[1];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_EntryType {
+            get {
+                return this.DataDefinition.ParameterFields[2];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedrptRetDCDetail : Component, ICachedReport {
+    public class CachedrptRetDCReport : Component, ICachedReport {
         
-        public CachedrptRetDCDetail() {
+        public CachedrptRetDCReport() {
         }
         
         [Browsable(false)]
@@ -137,7 +153,7 @@ namespace UI.Reports {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            rptRetDCDetail rpt = new rptRetDCDetail();
+            rptRetDCReport rpt = new rptRetDCReport();
             rpt.Site = this.Site;
             return rpt;
         }

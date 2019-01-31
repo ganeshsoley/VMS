@@ -152,7 +152,7 @@ namespace DAL
         /// <param name="objRetDC">Object containing Data values to be saved.</param>
         /// <returns>Boolean value True if Record is saved successfully
         /// otherwise returns False indicating Record is not saved.</returns>
-        public static bool Save(ReturnableDC objRetDC)
+        public static bool Save(ReturnableDC objRetDC, User currentUser)
         {
             int result = 0;
             UserCompany CurrentCompany = new UserCompany();
@@ -218,13 +218,13 @@ namespace DAL
                     if (objRetDC.IsNew)
                     {
                         objCmd.Parameters.AddWithValue("@StDate", DateTime.Now);
-                        objCmd.Parameters.AddWithValue("@CrBy", CurrentCompany.m_UserName);
+                        objCmd.Parameters.AddWithValue("@CrBy", currentUser.LoginName);
                         //objRetDC.DBID = General.GenerateDBID(Conn, "RETURNABLEDC");
                         objRetDC.DBID = General.GenerateDBID("SEQDCID", Conn);
                         objRetDC.EntryNo = objRetDC.DBID;
                     }
                     objCmd.Parameters.AddWithValue("@ModifyDate", DateTime.Now);
-                    objCmd.Parameters.AddWithValue("@ModBy", CurrentCompany.m_UserName);
+                    objCmd.Parameters.AddWithValue("@ModBy", currentUser.LoginName);
                     objCmd.Parameters.AddWithValue("@MachineName", General.GetMachineName());
                     objCmd.Parameters.AddWithValue("@dbID", objRetDC.DBID);
                     objCmd.Parameters.AddWithValue("@EntryNo", objRetDC.EntryNo);
@@ -390,6 +390,52 @@ namespace DAL
                 }
             }
             return id;
+        }
+
+        public static DataTable GetDCReport(string entryType, DateTime FromDate, DateTime ToDate, string partyName)
+        {
+            DataTable objList = null;
+            string strSql = "SELECT RETURNABLEDC.ENTRYNO, RETURNABLEDC.ENTRYDATE, RETURNABLEDC.ENTRYTYPE, " +
+                " RETURNABLEDC.PARTYNAME, RETURNABLEDC.DCNO, RETURNABLEDC.DCDATE, RETURNABLEDC.VINDATE, " +
+                " RETURNABLEDC.VINTIME, RETURNABLEDC.VOUTDATE, RETURNABLEDC.VOUTTIME, RETURNABLEDCDETAIL.ITEMCODE, " +
+                " RETURNABLEDCDETAIL.QTY, RETURNABLEDCDETAIL.UNIT " +
+                " FROM RETURNABLEDC INNER JOIN RETURNABLEDCDETAIL ON (RETURNABLEDC.ENTRYNO = RETURNABLEDCDETAIL.ENTRYNO) " +
+                " AND (RETURNABLEDC.ENTRYDATE = RETURNABLEDCDETAIL.ENTRYDATE) " +
+                " WHERE RETURNABLEDC.ENTRYTYPE = @entryType " +
+                " AND RETURNABLEDC.ENTRYDATE BETWEEN @FromDate and @ToDate ";
+
+            if (partyName != "ALL")
+            {
+                strSql += " AND RETURNABLEDC.PARTYNAME = @PartyName ";
+            }
+            strSql += " ORDER BY ENTRYDATE ASC, ENTRYNO ASC";
+
+            using (SqlConnection Conn = new SqlConnection(General.GetSQLConnectionString()))
+            {
+                using (SqlCommand objCmd = new SqlCommand())
+                {
+                    objCmd.Connection = Conn;
+                    objCmd.CommandType = CommandType.Text;
+                    objCmd.CommandText = strSql;
+                    objCmd.Parameters.AddWithValue("@entryType", entryType);
+                    objCmd.Parameters.AddWithValue("@FromDate", FromDate);
+                    objCmd.Parameters.AddWithValue("@ToDate", ToDate);
+
+                    if (partyName != "ALL")
+                    {
+                        objCmd.Parameters.AddWithValue("@PartyName", partyName);
+                    }
+
+                    if (Conn.State != ConnectionState.Open)
+                    {
+                        Conn.Open();
+                    }
+
+                    SqlDataAdapter da = new SqlDataAdapter(objCmd);
+                    da.Fill(objList);
+                }
+            }
+            return objList;
         }
     }
 }

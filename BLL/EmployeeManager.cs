@@ -35,7 +35,7 @@ namespace BLL
         /// </summary>
         /// <param name="objEmp">Employee Object containing property values.</param>
         /// <returns>Employee Object to be Saved.</returns>
-        public static bool Save(Employee objEmp)
+        public static bool Save(Employee objEmp, User objUser)
         {
             bool flgSave;
             try
@@ -44,7 +44,7 @@ namespace BLL
                 {
                     if (objEmp.IsEdited || objEmp.IsNew)
                     {
-                        EmployeeDAL.Save(objEmp);
+                        EmployeeDAL.Save(objEmp, objUser);
                     }
                     flgSave = true;
                     objTScope.Complete();

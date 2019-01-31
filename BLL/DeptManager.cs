@@ -36,7 +36,7 @@ namespace BLL
         /// <param name="objDept">Current Department Object.</param>
         /// <returns>Boolean value True if record is saved successfully
         /// otherwise returns 'False' indicating record is not saved.</returns>
-        public static bool Save(Department objDept)
+        public static bool Save(Department objDept, User objCurUser)
         {
             bool flgSave;
             try
@@ -51,7 +51,7 @@ namespace BLL
                         }
                         else
                         {
-                            DeptDAL.Save(objDept);
+                            DeptDAL.Save(objDept, objCurUser);
                         }
                     }
                     flgSave = true;

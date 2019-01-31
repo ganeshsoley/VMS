@@ -297,6 +297,7 @@
             this.cboParty.Name = "cboParty";
             this.cboParty.Size = new System.Drawing.Size(227, 21);
             this.cboParty.TabIndex = 5;
+            this.cboParty.Visible = false;
             // 
             // dtpToDate
             // 
@@ -322,6 +323,7 @@
             this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 2;
             this.label4.Text = "Party";
+            this.label4.Visible = false;
             // 
             // label3
             // 

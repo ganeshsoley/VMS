@@ -22,6 +22,7 @@ namespace UI
         WebCamera objWebCam;
 
         private VisitorGatePass objVisitorGP;
+        private User objUser;
         #endregion
 
         #region Constructor(s)
@@ -30,9 +31,10 @@ namespace UI
             InitializeComponent();
         }
 
-        public frmVisitorGPProp(VisitorGatePass objVisitorGP)
+        public frmVisitorGPProp(VisitorGatePass objVisitorGP, User objCurUser)
         {
             this.objVisitorGP = objVisitorGP;
+            objUser = objCurUser;
             InitializeComponent();
         }
         #endregion
@@ -583,7 +585,7 @@ namespace UI
             try
             {
                 bool flgApplyEdit;
-                flgApplyEdit = VisitorGatePassManager.Save(objVisitorGP);
+                flgApplyEdit = VisitorGatePassManager.Save(objVisitorGP, objUser);
                 if (flgApplyEdit)
                 {
                     if (objVisitorGP.IsNew)
@@ -618,6 +620,7 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();
             }
         }
 

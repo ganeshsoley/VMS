@@ -181,7 +181,7 @@ namespace UI
             SetButtonVisibility();
             if (IsList)
             {
-                this.CancelButton = btnCancel;
+                CancelButton = btnCancel;
             }
             flgLoading = false;
         }
@@ -327,7 +327,7 @@ namespace UI
                             frmDeptProp objFrmProp;
 
                             objDept = DeptManager.GetItem(Convert.ToInt32(lvwDepts.SelectedItems[0].Name));
-                            objFrmProp = new frmDeptProp(objDept);
+                            objFrmProp = new frmDeptProp(objDept, objCurUser);
                             objFrmProp.MdiParent = this.MdiParent;
                             objFrmProp.Entry_DataChanged += new frmDeptProp.DeptUpdateHandler(Entry_DataChanged);
                             objFrmProp.Show();
@@ -357,7 +357,7 @@ namespace UI
                         frmDeptProp objFrmProp;
 
                         objDept = new Department();
-                        objFrmProp = new frmDeptProp(objDept);
+                        objFrmProp = new frmDeptProp(objDept, objCurUser);
                         objFrmProp.IsNew = true;
                         objFrmProp.MdiParent = this.MdiParent;
                         objFrmProp.Entry_DataChanged += new frmDeptProp.DeptUpdateHandler(Entry_DataChanged);

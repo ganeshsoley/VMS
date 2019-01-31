@@ -305,7 +305,7 @@ namespace UI
                             frmDriverProp objFrmProp;
 
                             objDriver = DriverManager.GetItem(Convert.ToInt32(lvwDrivers.SelectedItems[0].Name));
-                            objFrmProp = new frmDriverProp(objDriver);
+                            objFrmProp = new frmDriverProp(objDriver, currentUser);
                             objFrmProp.MdiParent = this.MdiParent;
                             objFrmProp.Entry_DataChanged += new frmDriverProp.DriverUpdateHandler(Entry_DataChanged);
                             objFrmProp.Show();
@@ -335,7 +335,7 @@ namespace UI
                         frmDriverProp objFrmProp;
 
                         objDriver = new Driver();
-                        objFrmProp = new frmDriverProp(objDriver);
+                        objFrmProp = new frmDriverProp(objDriver, currentUser);
                         objFrmProp.IsNew = true;
                         objFrmProp.MdiParent = this.MdiParent;
                         objFrmProp.Entry_DataChanged += new frmDriverProp.DriverUpdateHandler(Entry_DataChanged);

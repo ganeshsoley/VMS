@@ -22,6 +22,7 @@ namespace UI
         private bool flgLoading;
         private bool flgNew;
 
+        private User currentUser;
         private Appointment objAppoint;
         #endregion
 
@@ -89,9 +90,10 @@ namespace UI
             InitializeComponent();
         }
 
-        public frmAppointmentProp(Appointment objAppoint)
+        public frmAppointmentProp(Appointment objAppoint, User currentUser)
         {
             this.objAppoint = objAppoint;
+            this.currentUser = currentUser;
             InitializeComponent();
         }
         #endregion
@@ -256,10 +258,12 @@ namespace UI
             {
                 bool flgApplyEdit;
                 
-                flgApplyEdit = AppointmentManager.Save(objAppoint);
+                flgApplyEdit = AppointmentManager.Save(objAppoint, currentUser);
 
                 if (flgApplyEdit)
                 {
+                    /// Commented Temporarily to clear error when internet is not available.
+
                     if (objAppoint.IsNew)
                     {
                         GetSMSRespons();
@@ -289,6 +293,7 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();
             }
         }
 

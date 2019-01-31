@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using EntityObject;
 using EntityObject.Enum;
 using BLL;
 using CrystalDecisions.Shared;
 using CrystalDecisions.CrystalReports.Engine;
+using System.Data;
+using UI.Reports;
+
 
 namespace UI
 {
@@ -353,7 +352,7 @@ namespace UI
                             frmReturnableDCProp objFrmProp;
 
                             objDC = ReturnableDCManager.GetItem(Convert.ToInt32(lvwDCList.SelectedItems[0].Name), true);
-                            objFrmProp = new frmReturnableDCProp(objDC);
+                            objFrmProp = new frmReturnableDCProp(objDC, currentUser);
                             objFrmProp.MdiParent = this.MdiParent;
                             objFrmProp.Entry_DataChanged += new frmReturnableDCProp.DCUpdateHandler(Entry_DataChanged);
                             objFrmProp.Show();
@@ -383,7 +382,7 @@ namespace UI
                         frmReturnableDCProp objFrmProp;
 
                         objDC = new ReturnableDC();
-                        objFrmProp = new frmReturnableDCProp(objDC);
+                        objFrmProp = new frmReturnableDCProp(objDC, currentUser);
                         objFrmProp.IsNew = true;
                         objFrmProp.MdiParent = this.MdiParent;
                         objFrmProp.Entry_DataChanged += new frmReturnableDCProp.DCUpdateHandler(Entry_DataChanged);
@@ -507,16 +506,91 @@ namespace UI
 
         private void btnRptView_Click(object sender, EventArgs e)
         {
+            //try
+            //{
+            //    //string strRecSelect = null;
+
+            //    ReportDocument objRptDoc = new ReportDocument();
+            //    ConnectionInfo objConInfo = new ConnectionInfo();
+            //    TableLogOnInfo objTableLogOnInfo = new TableLogOnInfo();
+            //    Tables objCrTables;
+
+            //    objRptDoc.Load(AppDomain.CurrentDomain.BaseDirectory + "\\Reports\\rptRetDCDetail.rpt");
+            //    objConInfo.ServerName = GeneralBLL.GetSqlServerPCName();
+            //    objConInfo.DatabaseName = GeneralBLL.GetDatabaseName();
+            //    objConInfo.UserID = GeneralBLL.GetDBUserName();
+            //    objConInfo.Password = GeneralBLL.GetDBPwd();
+            //    objConInfo.IntegratedSecurity = false;
+
+            //    objCrTables = objRptDoc.Database.Tables;
+            //    foreach (Table objCrTable in objCrTables)
+            //    {
+            //        objTableLogOnInfo = objCrTable.LogOnInfo;
+            //        objTableLogOnInfo.ConnectionInfo = objConInfo;
+            //        objCrTable.ApplyLogOnInfo(objTableLogOnInfo);
+            //    }
+
+            //    DateTime mFromDate = Convert.ToDateTime(dtpFromDate.Text);
+            //    DateTime mToDate = Convert.ToDateTime(dtpToDate.Text);
+
+            //    //strRecSelect = " Date({RETURNABLEDC.ENTRYDATE})>= #" + mFromDate.ToString("yyyy-MM-dd") + "# And Date({RETURNABLEDC.ENTRYDATE})<= #" + mToDate.ToString("yyyy-MM-dd") + "#";
+            //    //strRecSelect = " Date({RETURNABLEDC.ENTRYDATE})>= @mFromDate And Date({RETURNABLEDC.ENTRYDATE})<= @mToDate ";
+            //    //if (cboParty.Text.Trim() != "ALL")
+            //    //{
+            //    //    //objRptDoc.RecordSelectionFormula = " Date({RETURNABLEDC.ENTRYDATE})>= #" + dtpFromDate.Text + "# And Date({RETURNABLEDC.ENTRYDATE})<= #" + dtpToDate.Text + "# And ({RETURNABLEDC.PARTYNAME}) = '" + cboParty.Text + "'";
+            //    //    strRecSelect += " And ({RETURNABLEDC.PARTYNAME}) = '" + cboParty.Text + "'";
+            //    //}
+
+            //    //objRptDoc.RecordSelectionFormula = strRecSelect;
+
+
+            //    // Start
+            //    objRptDoc.ParameterFields.Add("mFromDate");
+            //    objRptDoc.ParameterFields.Add("mToDate");
+            //    objRptDoc.SetParameterValue("mFromDate", mFromDate.ToShortDateString());
+            //    objRptDoc.SetParameterValue("mToDate", mToDate.ToShortDateString());
+            //    if (cboParty.Text.Trim() != "ALL")
+            //    {
+            //        objRptDoc.ParameterFields.Add("mParty");
+            //        objRptDoc.SetParameterValue("mParty", cboParty.Text);
+            //    }
+
+            //    // End
+
+            //    frmReportViewer objFrmRpt = new frmReportViewer();
+            //    objFrmRpt.crystalReportViewer1.ReportSource = objRptDoc;
+            //    objFrmRpt.MdiParent = this.MdiParent;
+            //    objFrmRpt.WindowState = FormWindowState.Maximized;
+            //    objFrmRpt.crystalReportViewer1.Refresh();
+            //    objFrmRpt.Show();
+
+            //    //objRpt.crystalReportViewer1.ReportSource = objRptDoc;
+            //    //objRpt.MdiParent = this.MdiParent;
+            //    //objRpt.WindowState = FormWindowState.Maximized;
+            //    //objRpt.crystalReportViewer1.Refresh();
+            //    //objRpt.Show();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.InnerException.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //}
+
             try
             {
-                string strRecSelect;
-                frmReportViewer objRpt = new frmReportViewer();
-                ReportDocument objRptDoc = new ReportDocument();
+                DateTime mFromDate, mToDate;
                 ConnectionInfo objConInfo = new ConnectionInfo();
                 TableLogOnInfo objTableLogOnInfo = new TableLogOnInfo();
                 Tables objCrTables;
+                rptRetDCReport objRptDoc = new rptRetDCReport();
+                frmReportViewer objFrmRpt = new frmReportViewer();
 
-                objRptDoc.Load(AppDomain.CurrentDomain.BaseDirectory + "\\Reports\\rptRetDCDetail.rpt");
+                mFromDate = dtpFromDate.Value.Date;
+                mToDate = dtpToDate.Value.Date;
+
+                objRptDoc.SetParameterValue("@EntryType", cboEntryType.Text);
+                objRptDoc.SetParameterValue("@FromDate", mFromDate);
+                objRptDoc.SetParameterValue("@ToDate", mToDate);
+
                 objConInfo.ServerName = GeneralBLL.GetSqlServerPCName();
                 objConInfo.DatabaseName = GeneralBLL.GetDatabaseName();
                 objConInfo.UserID = GeneralBLL.GetDBUserName();
@@ -524,33 +598,22 @@ namespace UI
                 objConInfo.IntegratedSecurity = false;
 
                 objCrTables = objRptDoc.Database.Tables;
-                foreach (CrystalDecisions.CrystalReports.Engine.Table objCrTable in objCrTables)
+                foreach (Table objCrTable in objCrTables)
                 {
                     objTableLogOnInfo = objCrTable.LogOnInfo;
                     objTableLogOnInfo.ConnectionInfo = objConInfo;
                     objCrTable.ApplyLogOnInfo(objTableLogOnInfo);
                 }
 
-                DateTime mFromDate = Convert.ToDateTime(dtpFromDate.Text);
-                DateTime mToDate = Convert.ToDateTime(dtpToDate.Text);
-
-                strRecSelect = " Date({RETURNABLEDC.ENTRYDATE})>= #" + dtpFromDate.Text + "# And Date({RETURNABLEDC.ENTRYDATE})<= #" + dtpToDate.Text + "#";
-                if (cboParty.Text.Trim() != "ALL")
-                {
-                    //objRptDoc.RecordSelectionFormula = " Date({RETURNABLEDC.ENTRYDATE})>= #" + dtpFromDate.Text + "# And Date({RETURNABLEDC.ENTRYDATE})<= #" + dtpToDate.Text + "# And ({RETURNABLEDC.PARTYNAME}) = '" + cboParty.Text + "'";
-                    strRecSelect += " And ({RETURNABLEDC.PARTYNAME}) = '" + cboParty.Text + "'";
-                }
-
-                objRptDoc.RecordSelectionFormula = strRecSelect;
-                objRpt.crystalReportViewer1.ReportSource = objRptDoc;
-                objRpt.MdiParent = this.MdiParent;
-                objRpt.WindowState = FormWindowState.Maximized;
-                objRpt.crystalReportViewer1.Refresh();
-                objRpt.Show();
+                objFrmRpt.crystalReportViewer1.ReportSource = null;
+                objFrmRpt.crystalReportViewer1.ReportSource = objRptDoc;
+                objFrmRpt.MdiParent = this.MdiParent;
+                objFrmRpt.WindowState = FormWindowState.Maximized;
+                objFrmRpt.Show();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(ex.Message.ToString(), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

@@ -19,6 +19,7 @@ namespace UI
         private bool flgLoading;
 
         private City objCity;
+        private User objCurrentUser;
         #endregion
 
         #region Constructor
@@ -26,9 +27,10 @@ namespace UI
         {
             InitializeComponent();
         }
-        public frmCityProp(City objCity)
+        public frmCityProp(City objCity, User objUser)
         {
             this.objCity = objCity;
+            this.objCurrentUser = objUser;
             InitializeComponent();
         }
         #endregion
@@ -162,7 +164,7 @@ namespace UI
             try
             {
                 bool flgApplyEdit;
-                flgApplyEdit = CityManager.Save(objCity);
+                flgApplyEdit = CityManager.Save(objCity, objCurrentUser);
                 if (flgApplyEdit)
                 {
                     // instance the event args and pass it value

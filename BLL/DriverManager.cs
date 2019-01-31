@@ -36,7 +36,7 @@ namespace BLL
         /// <param name="objDriver">Object containing data values.</param>
         /// <returns>Boolean value True if record is saved successfully
         /// otherwise returns False indicating record is not saved.</returns>
-        public static bool Save(Driver objDriver)
+        public static bool Save(Driver objDriver, User objUser)
         {
             bool flgSave;
             try
@@ -45,7 +45,7 @@ namespace BLL
                 {
                     if (objDriver.IsEdited || objDriver.IsNew)
                     {
-                        DriverDAL.Save(objDriver);
+                        DriverDAL.Save(objDriver, objUser);
                     }
                     flgSave = true;
                     objTScope.Complete();

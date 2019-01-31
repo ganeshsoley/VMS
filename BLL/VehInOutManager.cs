@@ -37,7 +37,7 @@ namespace BLL
         /// </summary>
         /// <param name="objVisitor">VehInOut Object containing property values.</param>
         /// <returns>VehInOut Object to be Saved.</returns>
-        public static bool Save(VehInOut objVehInOut)
+        public static bool Save(VehInOut objVehInOut, User objUser)
         {
             bool flgSave;
             try
@@ -46,7 +46,7 @@ namespace BLL
                 {
                     if (objVehInOut.IsEdited || objVehInOut.IsNew)
                     {
-                        VehInOutDAL.Save(objVehInOut);
+                        VehInOutDAL.Save(objVehInOut, objUser);
                     }
                     flgSave = true;
                     objTScope.Complete();

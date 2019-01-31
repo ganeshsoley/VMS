@@ -147,7 +147,7 @@ namespace UI
                             objUser = UserManager.GetItem(Convert.ToInt32(lvwUsers.SelectedItems[0].Name));
                             if (objUser != null)
                             {
-                                objFrmUser = new frmUserProp(objUser);
+                                objFrmUser = new frmUserProp(objUser, currentUser);
                                 objFrmUser.IsNew = false;
                                 objFrmUser.MdiParent = this.MdiParent;
                                 objFrmUser.Entry_DataChanged += new frmUserProp.UserUpdateHandler(Entry_DataChanged);
@@ -180,7 +180,7 @@ namespace UI
                     if (objUIRights.AddRight)
                     {
                         User objUser = new User();
-                        frmUserProp objFrmUser = new frmUserProp(objUser);
+                        frmUserProp objFrmUser = new frmUserProp(objUser, currentUser);
 
                         objFrmUser.IsNew = true;
                         objFrmUser.MdiParent = this.MdiParent;

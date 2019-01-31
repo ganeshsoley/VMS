@@ -103,8 +103,8 @@ namespace UI
 
         public frmVehInOutList(UserCompany currentCompany, User currentUser)
         {
-            this.objUserCompany = currentCompany;
-            this.objCurUser = currentUser;
+            objUserCompany = currentCompany;
+            objCurUser = currentUser;
 
             objUIRights = new UIRights();
 
@@ -344,15 +344,90 @@ namespace UI
 
         private void btnRptView_Click(object sender, EventArgs e)
         {
+//            try
+//            {
+//                frmReportViewer objRpt = new frmReportViewer();
+//                ReportDocument objRptDoc = new ReportDocument();
+//                ConnectionInfo objConInfo = new ConnectionInfo();
+//                TableLogOnInfo objTableLogOnInfo = new TableLogOnInfo();
+//                Tables objCrTables;
+
+//                objRptDoc.Load(AppDomain.CurrentDomain.BaseDirectory + "\\Reports\\rptVehInOutDet.rpt");
+//                objConInfo.ServerName = GeneralBLL.GetSqlServerPCName();
+//                objConInfo.DatabaseName = GeneralBLL.GetDatabaseName();
+//                objConInfo.UserID = GeneralBLL.GetDBUserName();
+//                objConInfo.Password = GeneralBLL.GetDBPwd();
+//                objConInfo.IntegratedSecurity = false;
+
+//                objCrTables = objRptDoc.Database.Tables;
+//                foreach (CrystalDecisions.CrystalReports.Engine.Table objCrTable in objCrTables)
+//                {
+//                    objTableLogOnInfo = objCrTable.LogOnInfo;
+//                    objTableLogOnInfo.ConnectionInfo = objConInfo;
+//                    objCrTable.ApplyLogOnInfo(objTableLogOnInfo);
+//                }
+
+//                DateTime mFromDate = Convert.ToDateTime(dtpFromDate.Text);
+//                DateTime mToDate = Convert.ToDateTime(dtpToDate.Text);
+//                int tempValue;
+//                string strSelect;
+//                strSelect = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + mFromDate.ToString("yyyy-MM-dd")  + "# And Date({VEHINOUTDETAIL.ENTRYDATE}) <= #" + mToDate.ToString("yyyy-MM-dd") + "# ";
+////                CONVERT(varchar, mFromDate, 23)
+//                //if (cboType.Text == "ALL")
+//                //{
+//                //    //objRptDoc.RecordSelectionFormula = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + dtpFromDate.Text + "# And Date({VEHINOUTDETAIL.ENTRYDATE})<= #" + dtpToDate.Text + "# ";
+//                //    strSelect = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + dtpFromDate.Text + "# And Date({VEHINOUTDETAIL.ENTRYDATE})<= #" + dtpToDate.Text + "# ";
+//                //}
+//                if (cboType.Text == "COMPANY")
+//                {
+//                    tempValue = 1;
+//                    //objRptDoc.RecordSelectionFormula = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + dtpFromDate.Text +
+//                    //    "# And Date({VEHINOUTDETAIL.ENTRYDATE})<= #" + dtpToDate.Text +
+//                    //    "# And ({VEHINOUTDETAIL.TYPE}) = " + tempValue;
+//                    strSelect += " And ({VEHINOUTDETAIL.TYPE}) = " + tempValue;
+//                }
+//                else if (cboType.Text == "IN/OUT OTHER")
+//                {
+//                    tempValue = 4;
+//                    //objRptDoc.RecordSelectionFormula = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + dtpFromDate.Text +
+//                    //    "# And Date({VEHINOUTDETAIL.ENTRYDATE})<= #" + dtpToDate.Text +
+//                    //    "# And ({VEHINOUTDETAIL.TYPE}) = " + tempValue;
+//                    strSelect += " And ({VEHINOUTDETAIL.TYPE}) = " + tempValue;
+//                }
+
+//                objRptDoc.RecordSelectionFormula = strSelect;
+//                objRpt.crystalReportViewer1.ReportSource = objRptDoc;
+//                objRpt.MdiParent = this.MdiParent;
+//                objRpt.WindowState = FormWindowState.Maximized;
+//                objRpt.crystalReportViewer1.Refresh();
+//                objRpt.Show();
+//            }
+//            catch (Exception ex)
+//            {
+//                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+//            }
+
             try
             {
                 frmReportViewer objRpt = new frmReportViewer();
-                ReportDocument objRptDoc = new ReportDocument();
+                rptVehInOutDet objRptDoc = new rptVehInOutDet();
                 ConnectionInfo objConInfo = new ConnectionInfo();
                 TableLogOnInfo objTableLogOnInfo = new TableLogOnInfo();
                 Tables objCrTables;
 
-                objRptDoc.Load(AppDomain.CurrentDomain.BaseDirectory + "\\Reports\\rptVehInOutDet.rpt");
+                if (cboType.Text == "COMPANY")
+                {
+                    objRptDoc.SetParameterValue("@Type", 1);
+                }
+                else if (cboType.Text == "IN/OUT OTHER")
+                {
+                    objRptDoc.SetParameterValue("@Type", 4);
+                }
+
+                objRptDoc.SetParameterValue("@FromDate", dtpFromDate.Value.Date);
+                objRptDoc.SetParameterValue("@ToDate", dtpToDate.Value.Date);
+
+                //objRptDoc.Load(AppDomain.CurrentDomain.BaseDirectory + "\\Reports\\rptVehInOutDet.rpt");
                 objConInfo.ServerName = GeneralBLL.GetSqlServerPCName();
                 objConInfo.DatabaseName = GeneralBLL.GetDatabaseName();
                 objConInfo.UserID = GeneralBLL.GetDBUserName();
@@ -367,34 +442,35 @@ namespace UI
                     objCrTable.ApplyLogOnInfo(objTableLogOnInfo);
                 }
 
-                DateTime mFromDate = Convert.ToDateTime(dtpFromDate.Text);
-                DateTime mToDate = Convert.ToDateTime(dtpToDate.Text);
-                int tempValue;
-                string strSelect;
-                strSelect = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + dtpFromDate.Text + "# And Date({VEHINOUTDETAIL.ENTRYDATE})<= #" + dtpToDate.Text + "# ";
-                //if (cboType.Text == "ALL")
+                //DateTime mFromDate = Convert.ToDateTime(dtpFromDate.Text);
+                //DateTime mToDate = Convert.ToDateTime(dtpToDate.Text);
+                //int tempValue;
+                //string strSelect;
+                //strSelect = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + mFromDate.ToString("yyyy-MM-dd") + "# And Date({VEHINOUTDETAIL.ENTRYDATE}) <= #" + mToDate.ToString("yyyy-MM-dd") + "# ";
+                ////                CONVERT(varchar, mFromDate, 23)
+                ////if (cboType.Text == "ALL")
+                ////{
+                ////    //objRptDoc.RecordSelectionFormula = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + dtpFromDate.Text + "# And Date({VEHINOUTDETAIL.ENTRYDATE})<= #" + dtpToDate.Text + "# ";
+                ////    strSelect = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + dtpFromDate.Text + "# And Date({VEHINOUTDETAIL.ENTRYDATE})<= #" + dtpToDate.Text + "# ";
+                ////}
+                //if (cboType.Text == "COMPANY")
                 //{
-                //    //objRptDoc.RecordSelectionFormula = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + dtpFromDate.Text + "# And Date({VEHINOUTDETAIL.ENTRYDATE})<= #" + dtpToDate.Text + "# ";
-                //    strSelect = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + dtpFromDate.Text + "# And Date({VEHINOUTDETAIL.ENTRYDATE})<= #" + dtpToDate.Text + "# ";
+                //    tempValue = 1;
+                //    //objRptDoc.RecordSelectionFormula = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + dtpFromDate.Text +
+                //    //    "# And Date({VEHINOUTDETAIL.ENTRYDATE})<= #" + dtpToDate.Text +
+                //    //    "# And ({VEHINOUTDETAIL.TYPE}) = " + tempValue;
+                //    strSelect += " And ({VEHINOUTDETAIL.TYPE}) = " + tempValue;
                 //}
-                if (cboType.Text == "COMPANY")
-                {
-                    tempValue = 1;
-                    //objRptDoc.RecordSelectionFormula = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + dtpFromDate.Text +
-                    //    "# And Date({VEHINOUTDETAIL.ENTRYDATE})<= #" + dtpToDate.Text +
-                    //    "# And ({VEHINOUTDETAIL.TYPE}) = " + tempValue;
-                    strSelect += " And ({VEHINOUTDETAIL.TYPE}) = " + tempValue;
-                }
-                else if (cboType.Text == "IN/OUT OTHER")
-                {
-                    tempValue = 4;
-                    //objRptDoc.RecordSelectionFormula = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + dtpFromDate.Text +
-                    //    "# And Date({VEHINOUTDETAIL.ENTRYDATE})<= #" + dtpToDate.Text +
-                    //    "# And ({VEHINOUTDETAIL.TYPE}) = " + tempValue;
-                    strSelect += " And ({VEHINOUTDETAIL.TYPE}) = " + tempValue;
-                }
+                //else if (cboType.Text == "IN/OUT OTHER")
+                //{
+                //    tempValue = 4;
+                //    //objRptDoc.RecordSelectionFormula = " Date({VEHINOUTDETAIL.ENTRYDATE})>= #" + dtpFromDate.Text +
+                //    //    "# And Date({VEHINOUTDETAIL.ENTRYDATE})<= #" + dtpToDate.Text +
+                //    //    "# And ({VEHINOUTDETAIL.TYPE}) = " + tempValue;
+                //    strSelect += " And ({VEHINOUTDETAIL.TYPE}) = " + tempValue;
+                //}
 
-                objRptDoc.RecordSelectionFormula = strSelect;
+                //objRptDoc.RecordSelectionFormula = strSelect;
                 objRpt.crystalReportViewer1.ReportSource = objRptDoc;
                 objRpt.MdiParent = this.MdiParent;
                 objRpt.WindowState = FormWindowState.Maximized;
@@ -453,7 +529,7 @@ namespace UI
                             frmVehInOutProp objFrmProp;
 
                             objVehInOut = VehInOutManager.GetItem(Convert.ToInt32(lvwVehInOut.SelectedItems[0].Name));
-                            objFrmProp = new frmVehInOutProp(objVehInOut);
+                            objFrmProp = new frmVehInOutProp(objVehInOut, objCurUser);
                             objFrmProp.MdiParent = this.MdiParent;
                             objFrmProp.Entry_DataChanged += new frmVehInOutProp.VehInOutUpdateHandler(Entry_DataChanged);
                             objFrmProp.Show();
@@ -482,7 +558,7 @@ namespace UI
                         frmVehInOutProp objFrmProp;
 
                         objVehInOut = new VehInOut();
-                        objFrmProp = new frmVehInOutProp(objVehInOut);
+                        objFrmProp = new frmVehInOutProp(objVehInOut, objCurUser);
                         objFrmProp.IsNew = true;
                         objFrmProp.EntryType = this.EntryType;
                         objFrmProp.MdiParent = this.MdiParent;

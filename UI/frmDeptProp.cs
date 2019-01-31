@@ -14,6 +14,7 @@ namespace UI
         private bool flgLoading;
 
         private Department objDept;
+        private User objCurUser;
         #endregion
 
         #region Constructor
@@ -22,9 +23,10 @@ namespace UI
             InitializeComponent();
         }
 
-        public frmDeptProp(Department objDept)
+        public frmDeptProp(Department objDept, User objUser)
         {
             this.objDept = objDept;
+            objCurUser = objUser;
             InitializeComponent();
         }
         #endregion
@@ -205,7 +207,7 @@ namespace UI
             try
             {
                 bool flgApplyEdit;
-                flgApplyEdit = DeptManager.Save(objDept);
+                flgApplyEdit = DeptManager.Save(objDept, objCurUser);
                 if (flgApplyEdit)
                 {
                     // instance the event args and pass it value

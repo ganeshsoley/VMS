@@ -348,7 +348,7 @@ namespace UI
                             frmEmpProp objFrmProp;
 
                             objEmp = EmployeeManager.GetItem(Convert.ToInt32(lvwEmployees.SelectedItems[0].Name));
-                            objFrmProp = new frmEmpProp(objEmp);
+                            objFrmProp = new frmEmpProp(objEmp, currentUser);
                             objFrmProp.MdiParent = this.MdiParent;
                             objFrmProp.Entry_DataChanged += new frmEmpProp.EmpUpdateHandler(Entry_DataChanged);
                             objFrmProp.Show();
@@ -378,7 +378,7 @@ namespace UI
                         frmEmpProp objFrmProp;
 
                         objEmp = new Employee();
-                        objFrmProp = new frmEmpProp(objEmp);
+                        objFrmProp = new frmEmpProp(objEmp, currentUser);
                         objFrmProp.IsNew = true;
                         objFrmProp.MdiParent = this.MdiParent;
                         objFrmProp.Entry_DataChanged += new frmEmpProp.EmpUpdateHandler(Entry_DataChanged);

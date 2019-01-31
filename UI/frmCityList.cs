@@ -311,7 +311,7 @@ namespace UI
                             frmCityProp objFrmProp;
 
                             objCity = CityManager.GetItem(Convert.ToInt32(lvwCities.SelectedItems[0].Name));
-                            objFrmProp = new frmCityProp(objCity);
+                            objFrmProp = new frmCityProp(objCity, objCurUser);
                             objFrmProp.MdiParent = this.MdiParent;
                             objFrmProp.Entry_DataChanged += new frmCityProp.CityUpdateHandler(Entry_DataChanged);
                             objFrmProp.Show();
@@ -341,7 +341,7 @@ namespace UI
                         frmCityProp objFrmProp;
 
                         objCity = new City();
-                        objFrmProp = new frmCityProp(objCity);
+                        objFrmProp = new frmCityProp(objCity, objCurUser);
                         objFrmProp.IsNew = true;
                         objFrmProp.MdiParent = this.MdiParent;
                         objFrmProp.Entry_DataChanged += new frmCityProp.CityUpdateHandler(Entry_DataChanged);

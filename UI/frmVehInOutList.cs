@@ -204,7 +204,6 @@ namespace UI
         }
         private void FillTypes()
         {
-            cboType.Items.Add("ALL");
             cboType.Items.Add("COMPANY");
             cboType.Items.Add("IN/OUT OTHER");
         }
@@ -417,11 +416,11 @@ namespace UI
 
                 if (cboType.Text == "COMPANY")
                 {
-                    objRptDoc.SetParameterValue("@Type", 1);
+                    objRptDoc.SetParameterValue("@Type", 4);
                 }
                 else if (cboType.Text == "IN/OUT OTHER")
                 {
-                    objRptDoc.SetParameterValue("@Type", 4);
+                    objRptDoc.SetParameterValue("@Type", 1);
                 }
 
                 objRptDoc.SetParameterValue("@FromDate", dtpFromDate.Value.Date);

@@ -29,7 +29,7 @@ namespace UI
             //catch
             //{ }
 
-            FileStream fs = new FileStream(@"C:\ServiceLog.txt", FileMode.OpenOrCreate, FileAccess.Write);
+            FileStream fs = new FileStream(@"E:\ServiceLog.txt", FileMode.OpenOrCreate, FileAccess.Write);
             StreamWriter sw = new StreamWriter(fs);
             sw.BaseStream.Seek(0, SeekOrigin.End);
             sw.WriteLine(msg);

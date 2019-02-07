@@ -330,43 +330,51 @@ namespace UI
 
         private void btnRptView_Click(object sender, EventArgs e)
         {
-            frmReportViewer objRpt = new frmReportViewer();
-            ReportDocument objRptDoc = new ReportDocument();
-            ConnectionInfo objConInfo = new ConnectionInfo();
-            TableLogOnInfo objTableLogOnInfo = new TableLogOnInfo();
-            Tables objCrTables;
-
-            objRptDoc.Load(AppDomain.CurrentDomain.BaseDirectory + "\\Reports\\rptEmpWiseVistDet.rpt");
-            objConInfo.ServerName = GeneralBLL.GetSqlServerPCName();
-            objConInfo.DatabaseName = GeneralBLL.GetDatabaseName();
-            objConInfo.UserID = GeneralBLL.GetDBUserName();
-            objConInfo.Password = GeneralBLL.GetDBPwd();
-            objConInfo.IntegratedSecurity = false;
-
-            objCrTables = objRptDoc.Database.Tables;
-            foreach (CrystalDecisions.CrystalReports.Engine.Table objCrTable in objCrTables)
+            try
             {
-                objTableLogOnInfo = objCrTable.LogOnInfo;
-                objTableLogOnInfo.ConnectionInfo = objConInfo;
-                objCrTable.ApplyLogOnInfo(objTableLogOnInfo);
-            }
+                frmReportViewer objRpt = new frmReportViewer();
+                ReportDocument objRptDoc = new ReportDocument();
+                ConnectionInfo objConInfo = new ConnectionInfo();
+                TableLogOnInfo objTableLogOnInfo = new TableLogOnInfo();
+                Tables objCrTables;
 
-            DateTime mFromDate = Convert.ToDateTime(dtpFromDate.Text);
-            DateTime mToDate = Convert.ToDateTime(dtpToDate.Text);
+                objRptDoc.Load(AppDomain.CurrentDomain.BaseDirectory + "\\Reports\\rptEmpWiseVistDet.rpt");
+                objConInfo.ServerName = GeneralBLL.GetSqlServerPCName();
+                objConInfo.DatabaseName = GeneralBLL.GetDatabaseName();
+                objConInfo.UserID = GeneralBLL.GetDBUserName();
+                objConInfo.Password = GeneralBLL.GetDBPwd();
+                objConInfo.IntegratedSecurity = false;
 
-            if (cboEmployee.Text != "ALL")
-            {
-                objRptDoc.RecordSelectionFormula = " Date({VISITORGATEPASS.GATEDATE})>= #" + dtpFromDate.Text + "# And Date({VISITORGATEPASS.GATEDATE})<= #" + dtpToDate.Text + "# And ({VISITORGATEPASS.TOMEET}) = '" + cboEmployee.Text + "'";
+                objCrTables = objRptDoc.Database.Tables;
+                foreach (CrystalDecisions.CrystalReports.Engine.Table objCrTable in objCrTables)
+                {
+                    objTableLogOnInfo = objCrTable.LogOnInfo;
+                    objTableLogOnInfo.ConnectionInfo = objConInfo;
+                    objCrTable.ApplyLogOnInfo(objTableLogOnInfo);
+                }
+
+                DateTime mFromDate = Convert.ToDateTime(dtpFromDate.Text);
+                DateTime mToDate = Convert.ToDateTime(dtpToDate.Text);
+
+                if (cboEmployee.Text != "ALL")
+                {
+                    objRptDoc.RecordSelectionFormula = " Date({VISITORGATEPASS.GATEDATE})>= #" + dtpFromDate.Text + "# And Date({VISITORGATEPASS.GATEDATE})<= #" + dtpToDate.Text + "# And ({VISITORGATEPASS.TOMEET}) = '" + cboEmployee.Text + "'";
+                }
+                else
+                {
+                    objRptDoc.RecordSelectionFormula = " Date({VISITORGATEPASS.GATEDATE})>= #" + dtpFromDate.Text + "# And Date({VISITORGATEPASS.GATEDATE})<= #" + dtpToDate.Text + "# ";
+                }
+                objRpt.crystalReportViewer1.ReportSource = objRptDoc;
+                objRpt.MdiParent = this.MdiParent;
+                objRpt.WindowState = FormWindowState.Maximized;
+                objRpt.crystalReportViewer1.Refresh();
+                objRpt.Show();
             }
-            else
+            catch (Exception ex)
             {
-                objRptDoc.RecordSelectionFormula = " Date({VISITORGATEPASS.GATEDATE})>= #" + dtpFromDate.Text + "# And Date({VISITORGATEPASS.GATEDATE})<= #" + dtpToDate.Text + "# ";
+                MessageBox.Show(ex.Message.ToString());
+                AppLogger.Error(ex.Message.ToString() + "\n" + ex.InnerException.Message.ToString());
             }
-            objRpt.crystalReportViewer1.ReportSource = objRptDoc;
-            objRpt.MdiParent = this.MdiParent;
-            objRpt.WindowState = FormWindowState.Maximized;
-            objRpt.crystalReportViewer1.Refresh();
-            objRpt.Show();
         }
 
         private void btnRptCancel_Click(object sender, EventArgs e)
@@ -431,6 +439,8 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                AppLogger.Error(ex.Message.ToString());
+                AppLogger.Error(ex.StackTrace.ToString());
             }
         }
 
@@ -553,6 +563,9 @@ namespace UI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                AppLogger.Error(ex.Message.ToString());
+                AppLogger.Error(ex.InnerException.ToString());
+                AppLogger.Error(ex.StackTrace.ToString());
             }
         }
 

@@ -660,7 +660,7 @@
             "SharedLegacy" = "11:FALSE"
             "PackageAs" = "3:1"
             "Register" = "3:1"
-            "Exclude" = "11:FALSE"
+            "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
@@ -1260,7 +1260,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VMS"
         "ProductCode" = "8:{BEA9AA0D-3465-4520-971C-34D635AB07FA}"
-        "PackageCode" = "8:{FEE8554D-F7C8-4392-BD21-4BC34585067D}"
+        "PackageCode" = "8:{7092BE6F-F2F9-436C-97B8-B392A289D1D4}"
         "UpgradeCode" = "8:{CD08DD80-7196-4FC4-B8FF-E2C9404B844D}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

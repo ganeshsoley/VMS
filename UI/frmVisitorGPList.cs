@@ -554,6 +554,7 @@ namespace UI
                     objRpt.crystalReportViewer1.Refresh();
                     objRpt.Show();
                     // Ganesh Code Ends Here..
+                    AppLogger.Error("Report displayed " + DateTime.Now);
                 }
                 else
                 {

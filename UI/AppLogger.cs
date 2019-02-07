@@ -14,7 +14,7 @@ namespace UI
         public static void Error(string msg)
         {
             //try
-            //{
+            //{ 
             //    StackFrame stackFrame = new StackFrame(1, true);
             //    msg = DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss") + " " + getFileName(stackFrame.GetFileName()) + " : " + stackFrame.GetFileLineNumber().ToString() + " " + getHashCode() + " " + msg;
 

@@ -13,21 +13,28 @@ namespace UI
     {
         public static void Error(string msg)
         {
-            try
-            {
-                StackFrame stackFrame = new StackFrame(1, true);
-                msg = DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss") + " " + getFileName(stackFrame.GetFileName()) + " : " + stackFrame.GetFileLineNumber().ToString() + " " + getHashCode() + " " + msg;
+            //try
+            //{
+            //    StackFrame stackFrame = new StackFrame(1, true);
+            //    msg = DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss") + " " + getFileName(stackFrame.GetFileName()) + " : " + stackFrame.GetFileLineNumber().ToString() + " " + getHashCode() + " " + msg;
 
-                string filePath = System.Windows.Forms.Application.StartupPath + @"\" + DateTime.Now.Date.ToString("yyyyMMdd") + "_ERR.txt";
+            //    string filePath = System.Windows.Forms.Application.StartupPath + @"\" + DateTime.Now.Date.ToString("yyyyMMdd") + "_ERR.txt";
 
-                using (System.IO.StreamWriter file = new System.IO.StreamWriter(filePath, true))
-                {
-                    file.WriteLine(msg);
-                }
+            //    using (System.IO.StreamWriter file = new System.IO.StreamWriter(filePath, true))
+            //    {
+            //        file.WriteLine(msg);
+            //    }
 
-            }
-            catch
-            { }
+            //}
+            //catch
+            //{ }
+
+            FileStream fs = new FileStream(@"C:\ServiceLog.txt", FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.BaseStream.Seek(0, SeekOrigin.End);
+            sw.WriteLine(msg);
+            sw.Flush();
+            sw.Close();
         }
 
         public static void Info(string msg)
@@ -53,6 +60,7 @@ namespace UI
         {
             try
             {
+
                 return;
                 StackFrame stackFrame = new StackFrame(1, true);
                 msg = DateTime.Now.ToString("MM-dd-yyyy HH:mm:ss") + " " + getFileName(stackFrame.GetFileName()) + " : " + stackFrame.GetFileLineNumber().ToString() + " " + getHashCode() + " " + msg;

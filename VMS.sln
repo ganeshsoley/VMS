@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityObject", "EntityObjec
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DTPLVisitorSystem", "DTPLVisitorSystem\DTPLVisitorSystem.vdproj", "{0F9F7516-4F0B-418F-B5F5-48B4E6CF740F}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "VMS", "VMS\VMS.vdproj", "{55523E4D-272D-4582-A0C8-9A74832BAF97}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "VMS", "VMS\VMS.vdproj", "{F7D9A0EC-F324-4663-AF49-51A304E21605}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,11 +69,11 @@ Global
 		{0F9F7516-4F0B-418F-B5F5-48B4E6CF740F}.DVD-5|Any CPU.ActiveCfg = Debug
 		{0F9F7516-4F0B-418F-B5F5-48B4E6CF740F}.Release|Any CPU.ActiveCfg = Release
 		{0F9F7516-4F0B-418F-B5F5-48B4E6CF740F}.SingleImage|Any CPU.ActiveCfg = Release
-		{55523E4D-272D-4582-A0C8-9A74832BAF97}.CD_ROM|Any CPU.ActiveCfg = Release
-		{55523E4D-272D-4582-A0C8-9A74832BAF97}.Debug|Any CPU.ActiveCfg = Debug
-		{55523E4D-272D-4582-A0C8-9A74832BAF97}.DVD-5|Any CPU.ActiveCfg = Debug
-		{55523E4D-272D-4582-A0C8-9A74832BAF97}.Release|Any CPU.ActiveCfg = Release
-		{55523E4D-272D-4582-A0C8-9A74832BAF97}.SingleImage|Any CPU.ActiveCfg = Release
+		{F7D9A0EC-F324-4663-AF49-51A304E21605}.CD_ROM|Any CPU.ActiveCfg = Release
+		{F7D9A0EC-F324-4663-AF49-51A304E21605}.Debug|Any CPU.ActiveCfg = Debug
+		{F7D9A0EC-F324-4663-AF49-51A304E21605}.DVD-5|Any CPU.ActiveCfg = Debug
+		{F7D9A0EC-F324-4663-AF49-51A304E21605}.Release|Any CPU.ActiveCfg = Release
+		{F7D9A0EC-F324-4663-AF49-51A304E21605}.SingleImage|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
